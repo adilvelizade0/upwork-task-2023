@@ -8,6 +8,11 @@
   backdrop-filter: blur(25px) !important;
   margin-top:72px;
   height: calc(100vh - 72px) !important;
+
+  @media (max-width: 768px) {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
 }
 
 .chatWindow {
