@@ -34,7 +34,13 @@ git clone
 npm install --force
 ```
 
-3. Start the development server
+3. Add OpenAI API key to .env.locale file
+
+```bash
+NEXT_PUBLIC_OPENAI_API_KEY='YOUR_API_KEY'
+```
+
+4. Start the development server
 
 ```bash
 npm run dev
