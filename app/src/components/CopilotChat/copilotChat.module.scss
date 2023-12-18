@@ -1,24 +1,26 @@
 @import "app/src/styles/_variables.scss";
 
+.drawer {
+  width: 330px !important;
+  max-width: 330px !important;
+  background-color: #feffff !important;
+  box-shadow: -14px 8px 20px 0px rgba(19, 25, 35, 0.10) !important;
+  backdrop-filter: blur(25px) !important;
+  margin-top:72px;
+  height: calc(100vh - 72px) !important;
+}
+
 .chatWindow {
-  width: 330px;
-  max-width: 330px;
+  width: 100%;
+  height: 100%;
   overflow: hidden;
-  height: calc(100vh - 62px); // 62px is the height of the header
-  background: rgba(255, 255, 255, 0.80);
-  box-shadow: -14px 8px 20px 0px rgba(19, 25, 35, 0.10);
-  backdrop-filter: blur(25px);
-  position: fixed;
-  bottom: 0;
-  right: 0;
-  z-index: -1;
-
-
+  background-color: #feffff !important;
+  backdrop-filter: blur(25px) !important;
 }
 
 .headerText {
   font-family: $font-stack-primary;
-  color: #131923;
+  color: $dark-color;
   font-size: 20px;
   font-weight: 600;
 }
@@ -53,7 +55,7 @@
   width: 100%;
 
   p {
-    color: #131923;
+    color: $dark-color;
     font-family: $font-stack-secondary;
     font-size: 14px;
     font-weight: 400;
@@ -75,7 +77,7 @@
       height: 38px;
       padding: 8px;
       border-radius: 4px;
-      color: #131923;
+      color: $dark-color;
       font-family: $font-stack-primary;
       font-size: 14px;
       font-weight: 400;
@@ -106,7 +108,6 @@
     cursor: pointer;
     border-radius: 50px;
     background: #E1E1E1;
-
   }
 
 
@@ -145,13 +146,13 @@
 
    h1 {
      font-family: $font-stack-primary;
-     color: #131923;;
+     color: $dark-color;
      font-size: 18px;
      font-weight: 500;
    }
 
    li {
-     color: #131923;
+     color: $dark-color;
      font-size: 14px;
      font-weight: 400;
      border-radius: 50px;

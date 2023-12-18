@@ -1,3 +1,46 @@
+/**
+ * InteractionIcons Component
+ *
+ * Description:
+ * The InteractionIcons component renders a set of interactive icons that allow users to engage
+ * with a message. These icons provide functionality for liking, disliking, modifying the message's
+ * response, and copying message text to the clipboard.
+ *
+ * Props:
+ * - `addOptionToChat`: Optional callback function used to handle the selection of an option to modify
+ *   the chat response when the modify icon is clicked.
+ * - `id`: The unique identifier of the message associated with these interaction icons.
+ * - `text`: The text content of the message, used for the copy-to-clipboard functionality.
+ *
+ * Behavior:
+ * - Users can 'like' or 'dislike' a message, which will trigger the `addRate` function from the chat store.
+ * - Users can also modify the message using the provided options. When clicked, the `ModifyButton`
+ *   shows the `ActionMenu` with different modification options.
+ * - The `CopyButton` lets users copy the message text to the clipboard.
+ *
+ * Child Components:
+ * - `LikeButton`: A SVG button to 'like' the message.
+ * - `DisLikeButton`: A SVG button to 'dislike' the message.
+ * - `ModifyButton`: A SVG button that triggers the `ActionMenu` popup.
+ * - `CopyButton`: A SVG button to copy the message text.
+ * - `ActionMenu`: Rendered within the popup when the `ModifyButton` is clicked, provides message modification options.
+ * - `Popup`: From `reactjs-popup`, used to present the `ActionMenu`.
+ * - `useClipboard`: Hook from `react-use-clipboard`, manages the copy-to-clipboard functionality.
+ *
+ * Styling:
+ * - Primary component styles are defined in `copilotChat.module.scss`.
+ * - Inline styles for the `Popup` component are used to override default styles from `reactjs-popup`.
+ *
+ * Usage:
+ * ```jsx
+ * <InteractionIcons
+ *   addOptionToChat={myAddOptionToChatFunction}
+ *   id="msg-001"
+ *   text="Message text here."
+ * />
+ * ```
+ */
+
 "use client";
 import React, { FC } from "react";
 import LikeButton from "@/app/src/constants/svgs/LikeButton";

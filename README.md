@@ -1,36 +1,74 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Chat Application with ChatGPT Integration
 
-## Getting Started
+This chat application is built using React and integrates with OpenAI's ChatGPT to provide a responsive and interactive chatbot experience. It leverages the power of React Query for state management and Zustand for global state handling.
 
-First, run the development server:
+## Table of Contents
+
+- [Features](#features)
+- [Installation](#installation)
+- [Usage](#usage)
+- [Components](#components)
+- [Hooks](#hooks)
+- [Styling](#styling)
+
+## Features
+
+- Real-time ChatGPT integration
+- Interactive message input and options menu
+- Message history tracking with Zustand
+- Stylish UI with Tailwind CSS and custom SCSS modules
+
+## Installation
+
+To set up the project locally, follow these steps:
+
+1. Clone the repository
+
+```bash
+git clone
+```
+
+2. Install dependencies (use --force because one library has version issues)
+
+```bash
+npm install --force
+```
+
+3. Start the development server
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Usage
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+To interact with the chatbot:
 
-## Learn More
+1. Open the application in your browser.
+2. Click on the "Open Chat" button to open the chat window.
+3. Type your message in the input area or select predefined options.
+4. View the bot's response, and interact with messages using the provided icons.
 
-To learn more about Next.js, take a look at the following resources:
+## Components
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- `ChatWindow`: The main container for the chat interface.
+- `MessageInput`: Allows the user to type and send messages.
+- `MessageList`: Displays a list of all messages.
+- `ChatGPTMessage`: Renders individual chat messages with animation.
+- `InteractionIcons`: Provides interaction icons for likes, dislikes, and other actions.
+- `OptionMenu`: Shows predefined options for user interaction.
+- `ActionMenu`: Offers modification options for ChatGPT's responses.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+Each component is documented in their respective files with detailed descriptions and usage examples.
 
-## Deploy on Vercel
+## Hooks
+The following custom hooks are part of the application:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `useChatGPTQuery`: Manages the interactions with the ChatGPT API.
+- `useChatStore`: Provides the global state management with Zustand for messages and options.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+Refer to the hooks directory for proper documentation of each hook.
+
+## Styling
+The application uses Tailwind CSS for styling and custom SCSS modules for component-specific styling. The SCSS files are located in the `styles` directory and are imported in the respective component files. The Tailwind CSS configuration file is located in the root directory.
