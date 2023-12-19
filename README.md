@@ -34,7 +34,7 @@ git clone
 npm install --force
 ```
 
-3. Add OpenAI API key to .env.locale file
+3. Add OpenAI API key to .env file
 
 ```bash
 NEXT_PUBLIC_OPENAI_API_KEY='YOUR_API_KEY'
