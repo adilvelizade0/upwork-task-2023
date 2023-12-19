@@ -7,11 +7,10 @@
  * After a bot message is rendered, interaction icons are displayed to allow the user to react or further interact
  * with the message, such as selecting options to modify the response.
  */
-
-import React, { FC, JSX, useState } from "react";
+import React, { FC, JSX, useEffect, useState } from "react";
 import styles from "../copilotChat.module.scss";
 import InteractionIcons from "@/app/src/components/CopilotChat/CopilotChatComponents/InteractionIcons";
-import Typist from "react-typist";
+import { TypeAnimation } from "react-type-animation";
 
 interface IMessageElement {
   /**
@@ -70,6 +69,23 @@ const MessageElement: FC<IMessageElement> = ({
     setIsDisabled(false);
   };
 
+  /**
+   *  Calculates the typing time for the message based on the number of words.
+   */
+  const calculateTypingTime = () => {
+    const words = text.split(" ");
+    return words.length * 105;
+  };
+
+  /**
+   * Sets a timeout to show the interaction icons after the message has been rendered.
+   */
+  useEffect(() => {
+    setTimeout(() => {
+      animationEnd();
+    }, calculateTypingTime());
+  }, []);
+
   return (
     <div
       className={`
@@ -85,14 +101,13 @@ const MessageElement: FC<IMessageElement> = ({
       {sender === "user" ? (
         <p>{text}</p>
       ) : (
-        <Typist
-          avgTypingDelay={5}
-          cursor={{ show: false }}
-          onTypingDone={animationEnd}
-          className={styles.Typist}
-        >
-          <p>{text}</p>
-        </Typist>
+        <TypeAnimation
+          sequence={[text]}
+          wrapper="p"
+          cursor={false}
+          repeat={0}
+          speed={85}
+        />
       )}
 
       {sender === "bot" && isShowInteractionIcons ? (
