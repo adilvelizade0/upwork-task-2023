@@ -5,56 +5,40 @@
  * The `MessageList` component is responsible for rendering a list of message components. It is a part
  * of the chat interface that displays all the messages exchanged with ChatGPT. Each message is wrapped
  * within the `ChatGPTMessage` component which handles the display logic for individual messages.
- *
- * Props:
- * - `messages`: An array of Message objects to be displayed.
- * - `addOptionToChat`: A function that handles the addition of selected options to the chat.
- * - `setIsDisabled`: An optional function to control the disabled state of the message input.
- *
- * Behavior:
- * - The component iterates over the `messages` array and renders each message using the
- *   `ChatGPTMessage` component.
- * - Messages passed as props should contain unique identifiers for correct rendering and functionality.
- *
- * Child Components:
- * - `ChatGPTMessage`: Component used to render individual chat messages with interaction options.
- *
- * Usage:
- * ```jsx
- * // Array of messages with content, sender, and unique ID
- * const messages = [
- *   { id: '001', sender: 'user', text: 'Hello, ChatGPT!' },
- *   { id: '002', sender: 'bot', text: 'Hello! How can I assist you today?' },
- *   // More messages here...
- * ];
- *
- * // Function to add option interaction to the chat
- * function handleAddOptionToChat(option: string, id: string) {
- *   // Add selected option to the chat based on message id
- * }
- *
- * // Function to disable the message input (optional)
- * function handleSetIsDisabled(isDisabled: boolean) {
- *   // Disable or enable the message input
- * }
- *
- * <MessageList
- *   messages={messages}
- *   addOptionToChat={handleAddOptionToChat}
- *   setIsDisabled={handleSetIsDisabled}
- * />
- * ```
  */
-import ChatGPTMessage from "@/app/src/components/CopilotChat/CopilotChatComponents/ChatGPTMessage";
+
+import MessageElement from "@/app/src/components/CopilotChat/CopilotChatComponents/MessageElement";
 import styles from "../copilotChat.module.scss";
 import type { Message } from "../../../hooks/useChatStore";
 import React, { FC } from "react";
 
 interface IMessageListProps {
+  /**
+   * An array of message objects representing the chat history.
+   */
   messages: Message[];
+
+  /**
+   * Function to handle adding an option to the chat.
+   * @param option - The selected option.
+   * @param id - The ID of the message to replace with the option.
+   */
   addOptionToChat: (option: string, id: string) => void;
+
+  /**
+   * Optional function to set the disabled state of the chat input.
+   * @param isDisabled - Boolean value indicating whether the chat input should be disabled.
+   */
   setIsDisabled?: (isDisabled: boolean) => void;
 }
+
+/**
+ * MessageList component responsible for rendering the list of messages in the chat.
+ * @param messages - An array of message objects representing the chat history.
+ * @param addOptionToChat - Function to handle adding an option to the chat.
+ * @param setIsDisabled - Optional function to set the disabled state of the chat input.
+ * @returns The MessageList component.
+ */
 const MessageList: FC<IMessageListProps> = ({
   messages,
   addOptionToChat,
@@ -62,9 +46,9 @@ const MessageList: FC<IMessageListProps> = ({
 }) => {
   return (
     <div className={styles.MessageList}>
-      {messages.map((message: Message, index: number) => {
+      {messages.map((message: Message) => {
         return (
-          <ChatGPTMessage
+          <MessageElement
             key={message.id}
             id={message.id}
             sender={message.sender}

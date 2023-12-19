@@ -50,13 +50,20 @@
 import { useMutation, useQueryClient } from "react-query";
 import { useState } from "react";
 
+// Type for a chat message
 type Message = {
   role: "system" | "user" | "assistant";
   content: string;
 };
 
+/**
+ * Asynchronously fetches a response from the ChatGPT API based on the provided message and message history.
+ * @param message - The new message to be sent to the API.
+ * @param messageHistory - The history of messages in the conversation.
+ * @returns A Promise that resolves to the response from the ChatGPT API.
+ * @throws If the API request fails.
+ */
 async function fetchChatResponse(message: string, messageHistory: Message[]) {
-  console.log(process.env.NEXT_PUBLIC_OPENAI_API_KEY);
   const response = await fetch("https://api.openai.com/v1/chat/completions", {
     method: "POST",
     headers: {
@@ -76,16 +83,23 @@ async function fetchChatResponse(message: string, messageHistory: Message[]) {
   return response.json();
 }
 
+/**
+ * Custom React Query hook for interacting with ChatGPT API.
+ * @returns An object containing various properties and functions for managing chat state and sending messages.
+ */
+
 export const useChatGPTQuery = () => {
   const queryClient = useQueryClient();
   const [messageHistory, setMessageHistory] = useState<Message[]>([
     { role: "system", content: "You are a helpful assistant." },
   ]);
 
+  // useMutation hook to send a new message and update message history
   const sendMessage = useMutation(
     (newMessage: string) => fetchChatResponse(newMessage, messageHistory),
     {
       onSuccess: (data) => {
+        // Update message history with user and assistant messages
         setMessageHistory((prev) => [
           ...prev,
           { role: "user", content: data.choices[0].message.content },

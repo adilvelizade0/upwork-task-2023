@@ -6,43 +6,6 @@
  * of the ChatGPT response. It provides a list of buttons, each corresponding to a different
  * type of modification (e.g., Shorter, Longer, Simpler, Casual, Professional). Clicking on
  * an option invokes the `addOptionToChat` callback and closes the menu.
- *
- * Props:
- * - `close`: A callback function provided to close the menu, likely passed down from a Popup component.
- * - `addOptionToChat`: Optional callback function that is invoked when an option is selected. It takes
- *   a string representing the chosen option and the message ID.
- * - `id`: The unique identifier of the message that these options will modify.
- *
- * Behavior:
- * - The menu displays a list of tone or style modification options (as `<li>` elements).
- * - Each list item is associated with an option type, represented by a related SVG icon,
- *   and an option keyword (e.g., "shorter" or "simpler").
- * - Clicking on any option calls `addOptionToChat` with the corresponding keyword and message ID, then closes the menu.
- *
- * Child Components:
- * - `ShorterButton`, `LongerButton`, `SimplerButton`, `CasualButton`, `ProfessionalButton`:
- *   SVG components that represent the modification options visually.
- *
- * Styling:
- * - The component uses classes from `copilotChat.module.scss` for styling.
- * - Each list item is styled to contain an icon and text, spaced with a margin end (`me-2`) class.
- *
- * Usage:
- * ```jsx
- * const handleClose = () => {
- *   // Handle the closure of the menu, e.g., close a Popup
- * };
- *
- * const handleAddOptionToChat = (option, id) => {
- *   // Implement how the selected option should affect the chat message
- * };
- *
- * <ActionMenu
- *   close={handleClose}
- *   addOptionToChat={handleAddOptionToChat}
- *   id="msg-001"
- * />
- * ```
  */
 
 import React, { FC } from "react";
@@ -54,11 +17,31 @@ import CasualButton from "@/app/src/constants/svgs/CasualButton";
 import ProfessionalButton from "@/app/src/constants/svgs/ProfessionalButton";
 
 interface IActionMenu {
+  /**
+   * Function to close the action menu.
+   */
   close: () => void;
+
+  /**
+   * Function to handle adding an option to the chat.
+   * @param option - The selected option.
+   * @param id - The ID of the message to replace with the option.
+   */
   addOptionToChat?: (option: string, id) => void;
+
+  /**
+   * The unique identifier of the message.
+   */
   id: string;
 }
 
+/**
+ * ActionMenu component responsible for rendering a menu of modification options.
+ * @param close - Function to close the action menu.
+ * @param addOptionToChat - Function to handle adding an option to the chat.
+ * @param id - The unique identifier of the message.
+ * @returns The ActionMenu component.
+ */
 const ActionMenu: FC<IActionMenu> = ({ close, addOptionToChat, id }) => {
   return (
     <div className={styles.ActionMenu}>
@@ -69,45 +52,40 @@ const ActionMenu: FC<IActionMenu> = ({ close, addOptionToChat, id }) => {
             addOptionToChat && addOptionToChat("shorter", id);
             close();
           }}
-          className="flex items-center"
         >
-          <ShorterButton className="me-2" /> Shorter
+          <ShorterButton /> Shorter
         </li>
         <li
           onClick={() => {
             addOptionToChat && addOptionToChat("longer", id);
             close();
           }}
-          className="flex items-center"
         >
-          <LongerButton className="me-2" /> Longer
+          <LongerButton /> Longer
         </li>
         <li
           onClick={() => {
             addOptionToChat && addOptionToChat("simpler", id);
             close();
           }}
-          className="flex items-center"
         >
-          <SimplerButton className="me-2" /> Simpler
+          <SimplerButton /> Simpler
         </li>
         <li
           onClick={() => {
             addOptionToChat && addOptionToChat("casual", id);
             close();
           }}
-          className="flex items-center"
         >
-          <CasualButton className="me-2" /> Casual
+          <CasualButton /> Casual
         </li>
         <li
           onClick={() => {
             addOptionToChat && addOptionToChat("professional", id);
             close();
           }}
-          className="flex items-center"
         >
-          <ProfessionalButton className="me-2" /> Professional
+          <ProfessionalButton /> Professional
         </li>
       </ul>
     </div>

@@ -13,14 +13,8 @@
  *    - sender: Indicates whether the message is from the "user" or the "bot".
  *    - rate: Optional, indicates if the message is "liked" or "disliked".
  *
- * - Options: Represents predefined options presented to users for modifying the chat response or quick replies.
- *    - title: A title categorizing the options.
- *    - data: An array of strings representing the actual options.
- *
  * State:
  * - messages: An array holding all chat messages.
- * - options: An array holding predefined categories and their respective data that can be used to enhance
- *   or modify the chatbot's response.
  *
  * Actions:
  * - addMessage (messageText, sender):
@@ -33,6 +27,7 @@
  *    Removes a message from the chat by its identifier.
  *
  * Usage:
+ *
  * ```jsx
  * const sendMessage = (text, sender) => {
  *   const { addMessage } = useChatStore();
@@ -50,23 +45,22 @@
  * };
  *
  * // In components:
+ *
  * // To send a message
  * sendMessage("Hello, ChatGPT!", "user");
+ *
  * // To like a message
  * likeMessage("unique-message-id");
+ *
  * // To delete a message
  * deleteMessage("unique-message-id");
  * ```
- *
- * Note:
- * Zustand is a minimalistic state manager which is ideal for simple states like these. It abstracts away the
- * boilerplate needed in typical state management solutions and offers a lean API. Ensure that you maintain the store
- * state immutably by copying and updating states rather than modifying them directly to prevent unwanted side effects.
  */
 
 import { create } from "zustand";
 import { v4 as uuidv4 } from "uuid";
 
+// Basic data structure for a message
 export type Message = {
   id: string;
   text: string;
@@ -74,35 +68,21 @@ export type Message = {
   rate?: "like" | "dislike";
 };
 
-export type Options = {
-  title: string;
-  data: Array<string>;
-};
-
+// Type for ChatState, encompassing the usage of the Zustand hook
 type ChatState = {
   messages: Array<Message>;
-  options: Array<Options>;
   addMessage: (messageText: string, sender: "user" | "bot") => void;
   addRate: (messageId: string, rate: "like" | "dislike") => void;
   deleteMessage: (messageId: string) => void;
 };
 
+// Creating the Zustand hook
 export const useChatStore = create<ChatState>((set) => ({
+  // Initially an empty array for messages
   messages: [],
-  options: [
-    {
-      title: "Define Strategy",
-      data: ["Goal Setting", "Strategic Initiatives", "Business Plan Outline"],
-    },
-    {
-      title: "Marketing Research",
-      data: ["Customer Profiles", "Industry Trends"],
-    },
-    {
-      title: "Risk Assessment",
-      data: ["SWOT Analysis", "Risk Register", "Risk Score"],
-    },
-  ],
+
+  // Function to add a new message
+  // addMessage: Used to add a new message. Takes the message text and sender ("user" or "bot") as parameters.
   addMessage: (messageText, sender) =>
     set((state) => ({
       messages: [
@@ -111,6 +91,8 @@ export const useChatStore = create<ChatState>((set) => ({
       ],
     })),
 
+  // Function to rate a message
+  // addRate: Used to rate a message (like or dislike). Takes the message ID and the rating (like or dislike) as parameters.
   addRate: (messageId, rate) => {
     set((state) => ({
       messages: state.messages.map((message) =>
@@ -119,6 +101,8 @@ export const useChatStore = create<ChatState>((set) => ({
     }));
   },
 
+  // Function to delete a message
+  // deleteMessage: Used to delete a message. Takes the message ID as a parameter.
   deleteMessage: (messageId) =>
     set((state) => ({
       messages: state.messages.filter((message) => message.id !== messageId),
