@@ -143,9 +143,7 @@ const InteractionIcons: FC<IInteractionIconsProps> = ({
       <button
         onClick={() => {
           setCopied();
-          if (isCopied) {
-            toast("Copied to clipboard!", 1000);
-          }
+          toast("Copied to clipboard!", 1000);
         }}
       >
         <CopyButtonSvg />

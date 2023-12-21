@@ -49,16 +49,17 @@ const OptionMenu: FC<IOptionMenuProps> = ({ addMessageToChat }) => {
   return (
     <div className={styles.OptionMenu}>
       <div>
-        {options.map((option) => {
+        {options.map((option, index) => {
           return (
-            <ul>
+            <ul key={index}>
               <h1>{option.name}</h1>
-              {option.options.map((option) => {
+              {option.options.map((option, index) => {
                 return (
                   <li
                     onClick={() => {
                       addMessageToChat(option);
                     }}
+                    key={index}
                   >
                     {option}
                   </li>
