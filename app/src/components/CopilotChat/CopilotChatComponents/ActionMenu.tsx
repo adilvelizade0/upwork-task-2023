@@ -10,11 +10,11 @@
 
 import React, { FC } from "react";
 import styles from "../copilotChat.module.scss";
-import ShorterButton from "@/app/src/constants/svgs/ShorterButton";
-import LongerButton from "@/app/src/constants/svgs/LongerButton";
-import SimplerButton from "@/app/src/constants/svgs/SimplerButton";
-import CasualButton from "@/app/src/constants/svgs/CasualButton";
-import ProfessionalButton from "@/app/src/constants/svgs/ProfessionalButton";
+import ShorterButtonSvg from "@/app/src/constants/svgs/ShorterButtonSvg";
+import LongerButtonSvg from "@/app/src/constants/svgs/LongerButtonSvg";
+import SimplerButtonSvg from "@/app/src/constants/svgs/SimplerButtonSvg";
+import CasualButtonSvg from "@/app/src/constants/svgs/CasualButtonSvg";
+import ProfessionalButtonSvg from "@/app/src/constants/svgs/ProfessionalButtonSvg";
 
 interface IActionMenu {
   /**
@@ -43,50 +43,58 @@ interface IActionMenu {
  * @returns The ActionMenu component.
  */
 const ActionMenu: FC<IActionMenu> = ({ close, addOptionToChat, id }) => {
+  /**
+   * Handles the click event of an action menu option.
+   * @param type - The type of modification to apply to the response.
+   * @returns void
+   */
+  const onClickActionMenu = (type: string) => {
+    addOptionToChat && addOptionToChat(type, id);
+    close();
+  };
+
+  /**
+   * An array of options to display in the action menu.
+   */
+  const actionMenuOptions = [
+    {
+      name: "Shorter",
+      icon: <ShorterButtonSvg />,
+      onClick: () => onClickActionMenu("shorter"),
+    },
+    {
+      name: "Longer",
+      icon: <LongerButtonSvg />,
+      onClick: () => onClickActionMenu("longer"),
+    },
+    {
+      name: "Simpler",
+      icon: <SimplerButtonSvg />,
+      onClick: () => onClickActionMenu("simpler"),
+    },
+    {
+      name: "Casual",
+      icon: <CasualButtonSvg />,
+      onClick: () => onClickActionMenu("casual"),
+    },
+    {
+      name: "Professional",
+      icon: <ProfessionalButtonSvg />,
+      onClick: () => onClickActionMenu("professional"),
+    },
+  ];
+
   return (
     <div className={styles.ActionMenu}>
       <span>Modify:</span>
       <ul>
-        <li
-          onClick={() => {
-            addOptionToChat && addOptionToChat("shorter", id);
-            close();
-          }}
-        >
-          <ShorterButton /> Shorter
-        </li>
-        <li
-          onClick={() => {
-            addOptionToChat && addOptionToChat("longer", id);
-            close();
-          }}
-        >
-          <LongerButton /> Longer
-        </li>
-        <li
-          onClick={() => {
-            addOptionToChat && addOptionToChat("simpler", id);
-            close();
-          }}
-        >
-          <SimplerButton /> Simpler
-        </li>
-        <li
-          onClick={() => {
-            addOptionToChat && addOptionToChat("casual", id);
-            close();
-          }}
-        >
-          <CasualButton /> Casual
-        </li>
-        <li
-          onClick={() => {
-            addOptionToChat && addOptionToChat("professional", id);
-            close();
-          }}
-        >
-          <ProfessionalButton /> Professional
-        </li>
+        {actionMenuOptions.map((option, index) => {
+          return (
+            <li key={index} onClick={option.onClick}>
+              {option.icon} {option.name}
+            </li>
+          );
+        })}
       </ul>
     </div>
   );

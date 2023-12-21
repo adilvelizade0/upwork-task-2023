@@ -12,7 +12,7 @@ import styles from "../copilotChat.module.scss";
 import InteractionIcons from "@/app/src/components/CopilotChat/CopilotChatComponents/InteractionIcons";
 import { TypeAnimation } from "react-type-animation";
 
-interface IMessageElement {
+interface IMessageProps {
   /**
    * The sender of the message, either "user" or "bot".
    */
@@ -51,7 +51,7 @@ interface IMessageElement {
  * @param setIsDisabled - Optional function to set the disabled state of the chat input.
  * @returns The MessageElement component.
  */
-const MessageElement: FC<IMessageElement> = ({
+const Message: FC<IMessageProps> = ({
   id,
   sender,
   text,
@@ -121,4 +121,4 @@ const MessageElement: FC<IMessageElement> = ({
   );
 };
 
-export default MessageElement;
+export default Message;

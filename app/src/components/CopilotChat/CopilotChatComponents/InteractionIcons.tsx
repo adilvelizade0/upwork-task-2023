@@ -9,10 +9,10 @@
 
 "use client";
 import React, { FC } from "react";
-import LikeButton from "@/app/src/constants/svgs/LikeButton";
-import DisLike from "@/app/src/constants/svgs/DisLikeButton";
-import ModifyButton from "@/app/src/constants/svgs/ModifyButton";
-import CopyButton from "@/app/src/constants/svgs/CopyButton";
+import LikeButtonSvg from "@/app/src/constants/svgs/LikeButtonSvg";
+import DisLikeButtonSvg from "@/app/src/constants/svgs/DisLikeButtonSvg";
+import ModifyButtonSvg from "@/app/src/constants/svgs/ModifyButtonSvg";
+import CopyButtonSvg from "@/app/src/constants/svgs/CopyButtonSvg";
 import styles from "../copilotChat.module.scss";
 import Popup from "reactjs-popup";
 import "reactjs-popup/dist/index.css";
@@ -100,20 +100,26 @@ const InteractionIcons: FC<IInteractionIconsProps> = ({
     <div className={styles.InteractionIcons}>
       <div className={styles.actionButtons}>
         <button onClick={handleLike}>
-          <LikeButton
-            fill={findMessage(id).rate === "like" ? "green" : "#242625"}
+          <LikeButtonSvg
+            className={
+              findMessage(id).rate === "like" ? styles.likeButton : undefined
+            }
           />
         </button>
         <button onClick={handleDisLike}>
-          <DisLike
-            fill={findMessage(id).rate === "dislike" ? "red" : "#242625"}
+          <DisLikeButtonSvg
+            className={
+              findMessage(id).rate === "dislike"
+                ? styles.dislikeButton
+                : undefined
+            }
           />
         </button>
 
         <Popup
           trigger={
             <button autoFocus={false}>
-              <ModifyButton />
+              <ModifyButtonSvg />
             </button>
           }
           position="top left"
@@ -142,7 +148,7 @@ const InteractionIcons: FC<IInteractionIconsProps> = ({
           }
         }}
       >
-        <CopyButton />
+        <CopyButtonSvg />
       </button>
     </div>
   );

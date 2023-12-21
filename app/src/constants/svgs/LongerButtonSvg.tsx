@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 
-interface ILongerButton {
+interface ILongerButtonSvg {
   className?: string;
 }
-const LongerButton: FC<ILongerButton> = ({ className }) => (
+const LongerButtonSvg: FC<ILongerButtonSvg> = ({ className }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="16"
@@ -34,4 +34,4 @@ const LongerButton: FC<ILongerButton> = ({ className }) => (
   </svg>
 );
 
-export default LongerButton;
+export default LongerButtonSvg;

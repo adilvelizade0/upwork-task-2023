@@ -46,7 +46,7 @@ const MessageInput: FC<IMessageInputProps> = ({
   prompt,
   handlePromptChange,
   addMessageToChat,
-  disabled = false,
+  disabled,
 }) => {
   return (
     <div className={`${styles.MessageInputContainer}`}>

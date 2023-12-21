@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 
-interface ISimplerButton {
+interface ISimplerButtonSvg {
   className?: string;
 }
 
-const SimplerButton: FC<ISimplerButton> = ({ className }) => (
+const SimplerButtonSvg: FC<ISimplerButtonSvg> = ({ className }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="16"
@@ -21,4 +21,4 @@ const SimplerButton: FC<ISimplerButton> = ({ className }) => (
     <path d="M9.05292 9.66663H2.66669" stroke="#131923" strokeLinecap="round" />
   </svg>
 );
-export default SimplerButton;
+export default SimplerButtonSvg;

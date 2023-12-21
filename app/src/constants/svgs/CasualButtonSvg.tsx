@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 
-interface ICasualButton {
+interface ICasualButtonSvg {
   className?: string;
 }
 
-const CasualButton: FC<ICasualButton> = ({ className }) => (
+const CasualButtonSvg: FC<ICasualButtonSvg> = ({ className }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="16"
@@ -30,4 +30,4 @@ const CasualButton: FC<ICasualButton> = ({ className }) => (
     />
   </svg>
 );
-export default CasualButton;
+export default CasualButtonSvg;

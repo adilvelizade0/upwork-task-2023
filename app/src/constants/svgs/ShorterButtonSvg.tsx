@@ -1,9 +1,9 @@
 import React, { FC } from "react";
 
-interface IShorterButton {
+interface IShorterButtonSvg {
   className?: string;
 }
-const ShorterButton: FC<IShorterButton> = ({ className }) => (
+const ShorterButtonSvg: FC<IShorterButtonSvg> = ({ className }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="16"
@@ -29,4 +29,4 @@ const ShorterButton: FC<IShorterButton> = ({ className }) => (
   </svg>
 );
 
-export default ShorterButton;
+export default ShorterButtonSvg;

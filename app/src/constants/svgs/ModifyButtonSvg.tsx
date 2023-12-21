@@ -1,6 +1,6 @@
 import React from "react";
 
-const ModifyButton = () => (
+const ModifyButtonSvg = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="16"
@@ -71,4 +71,4 @@ const ModifyButton = () => (
   </svg>
 );
 
-export default ModifyButton;
+export default ModifyButtonSvg;

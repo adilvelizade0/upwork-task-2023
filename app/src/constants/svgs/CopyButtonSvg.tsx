@@ -1,6 +1,6 @@
 import React from "react";
 
-const CopyButton = () => (
+const CopyButtonSvg = () => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="16"
@@ -21,4 +21,4 @@ const CopyButton = () => (
   </svg>
 );
 
-export default CopyButton;
+export default CopyButtonSvg;

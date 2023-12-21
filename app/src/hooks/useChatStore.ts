@@ -61,7 +61,7 @@ import { create } from "zustand";
 import { v4 as uuidv4 } from "uuid";
 
 // Basic data structure for a message
-export type Message = {
+export type IMessage = {
   id: string;
   text: string;
   sender: "user" | "bot";
@@ -70,7 +70,7 @@ export type Message = {
 
 // Type for ChatState, encompassing the usage of the Zustand hook
 type ChatState = {
-  messages: Array<Message>;
+  messages: Array<IMessage>;
   addMessage: (messageText: string, sender: "user" | "bot") => void;
   addRate: (messageId: string, rate: "like" | "dislike") => void;
   deleteMessage: (messageId: string) => void;

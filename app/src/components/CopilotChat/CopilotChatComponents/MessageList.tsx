@@ -7,16 +7,16 @@
  * within the `ChatGPTMessage` component which handles the display logic for individual messages.
  */
 
-import MessageElement from "@/app/src/components/CopilotChat/CopilotChatComponents/MessageElement";
+import Message from "@/app/src/components/CopilotChat/CopilotChatComponents/Message";
 import styles from "../copilotChat.module.scss";
-import type { Message } from "../../../hooks/useChatStore";
+import type { IMessage } from "../../../hooks/useChatStore";
 import React, { FC } from "react";
 
 interface IMessageListProps {
   /**
    * An array of message objects representing the chat history.
    */
-  messages: Message[];
+  messages: IMessage[];
 
   /**
    * Function to handle adding an option to the chat.
@@ -46,9 +46,9 @@ const MessageList: FC<IMessageListProps> = ({
 }) => {
   return (
     <div className={styles.MessageList}>
-      {messages.map((message: Message) => {
+      {messages.map((message: IMessage) => {
         return (
-          <MessageElement
+          <Message
             key={message.id}
             id={message.id}
             sender={message.sender}

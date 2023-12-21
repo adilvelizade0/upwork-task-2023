@@ -13,7 +13,7 @@ import React, { useEffect, useState, JSX, FC } from "react";
 import MessageList from "./MessageList";
 import MessageInput from "./MessageInput";
 import styles from "../copilotChat.module.scss";
-import CloseButton from "@/app/src/constants/svgs/CloseButton";
+import CloseButtonSvg from "@/app/src/constants/svgs/CloseButtonSvg";
 import { useChatStore } from "@/app/src/hooks/useChatStore";
 import { useChatGPTQuery } from "@/app/src/utils/api";
 import OptionMenu from "@/app/src/components/CopilotChat/CopilotChatComponents/OptionMenu";
@@ -104,7 +104,7 @@ const ChatWindow: FC<IChatWindowProps> = ({ toggleDrawer }): JSX.Element => {
       <div className={styles.chatHeader}>
         <h1 className={styles.headerText}>Financial Copilot Chat </h1>
         <button onClick={toggleDrawer}>
-          <CloseButton />
+          <CloseButtonSvg />
         </button>
       </div>
       <div>

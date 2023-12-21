@@ -1,10 +1,10 @@
 import React, { FC } from "react";
 
-interface IProfessionalButton {
+interface IProfessionalButtonSvg {
   className?: string;
 }
 
-const ProfessionalButton: FC<IProfessionalButton> = ({ className }) => (
+const ProfessionalButtonSvg: FC<IProfessionalButtonSvg> = ({ className }) => (
   <svg
     xmlns="http://www.w3.org/2000/svg"
     width="16"
@@ -39,4 +39,4 @@ const ProfessionalButton: FC<IProfessionalButton> = ({ className }) => (
   </svg>
 );
 
-export default ProfessionalButton;
+export default ProfessionalButtonSvg;
